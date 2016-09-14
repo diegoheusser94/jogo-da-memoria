@@ -1,4 +1,23 @@
-var personagens = ["coyote.jpg","dk.jpg","jerry.png","luigi.jpg","mario.png","sonic.jpg","speedy_gonzalez.png","star.jpg","tom.png","woody.jpg","coyote.jpg","dk.jpg","jerry.png","luigi.jpg","mario.png","sonic.jpg","speedy_gonzalez.png","star.jpg","tom.png","woody.jpg"];
+﻿var personagens = ["coyote.jpg",
+				   "dk.jpg",
+				   "jerry.png",
+				   "luigi.jpg",
+				   "mario.png",
+				   "sonic.jpg",
+				   "speedy_gonzalez.png",
+				   "star.jpg",
+				   "tom.png",
+				   "woody.jpg",
+				   "coyote.jpg",
+				   "dk.jpg",
+				   "jerry.png",
+				   "luigi.jpg",
+				   "mario.png",
+				   "sonic.jpg",
+				   "speedy_gonzalez.png",
+				   "star.jpg",
+				   "tom.png",
+				   "woody.jpg"];
 
 function embaralhar() {
     var j, x, i;
@@ -20,4 +39,8 @@ function setImagens(){
 function revelar(id) {
 	var i = Number(id.substring(4,id.length));
 	document.getElementById(id).src = "img/"+personagens[i-1];
+}
+
+function desvirarCarta(id){
+	document.getElementById(id).src = "img/verso.jpg";
 }

@@ -1,15 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
-		<title>Jogo da Mem�ria</title>
+		<title>Jogo da Memória</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+		
 		<script>
-			embaralhar();
-			setImagens();
+			$(function(){
+				
+				//Variável para liberaçao e bloqueio de seleçao de carta
+				var libera = true;
+			
+				//Variável de controle de cartas viradas
+				var qtdCartas = 0;
+				
+				//Array com as cartas viradas
+				var arrCartas = new Array();
+				
+				//Açao para embaralhar o array das imagens e setalas nas cartas
+				setTimeout(function() {            
+					embaralhar();
+				}, 100);
+				
+				//Açao ao clicar na cartas
+				$.fn.viraCarta = function(id){
+					if(libera){
+						//Bloqueia seleçao de nova carta
+						libera = false;
+						//Incrementa quantidade de cartas viradas
+						qtdCartas++;
+						//Inserindo a carta selecionada no array
+						arrCartas.push(id);
+						
+						//Funcao para revelar a carta
+						revelar('img-'+id);					
+						
+						//Verifica se tem 2 ou mais cartas viradas
+						if(qtdCartas > 1){
+							
+							//Comparar as duas cartas, caso forem diferentes, desviram as cartas
+							if($("#img-"+arrCartas[0]).prop("src") != $("#img-"+arrCartas[1]).prop("src")){
+								setTimeout(function(){
+									//Desvirar as cartas depois de um segundo
+									for(i=0;i<arrCartas.length;i++){
+										desvirarCarta('img-'+arrCartas[i]);
+									}
+									//Limpando o array
+									arrCartas = [];
+									//Libera seleçao de carta
+									libera = true;
+								},1000);
+							}
+							//Caso as cartas sejam iguais, apenas limpa o array com as cartas selecionadas
+							else{
+								//Limpando o array
+								arrCartas = [];
+								//Libera seleçao de carta
+								libera = true;
+							}
+							
+							//Reset da quantidade de cartas
+							qtdCartas = 0;
+						}
+						else{
+							//Libera seleçao de carta
+							libera = true;
+						}
+					}
+					
+				};
+				
+			});
 		</script>
 	</head>
 	<body>
@@ -17,70 +81,70 @@
 			<table>
 				<tr>
 					<th>
-						<img id="img-1" src="img/verso.jpg" onclick="revelar('img-1')"/>
+						<img id="img-1" src="img/verso.jpg" onclick="$(this).viraCarta('1')"/>
 					<th>
 					<th>
-						<img id="img-2" src="img/verso.jpg" onclick="revelar('img-2')"/>
+						<img id="img-2" src="img/verso.jpg" onclick="$(this).viraCarta('2')"/>
 					<th>
 					<th>
-						<img id="img-3" src="img/verso.jpg" onclick="revelar('img-3')"/>
+						<img id="img-3" src="img/verso.jpg" onclick="$(this).viraCarta('3')"/>
 					<th>
 					<th>
-						<img id="img-4" src="img/verso.jpg" onclick="revelar('img-4')"/>
+						<img id="img-4" src="img/verso.jpg" onclick="$(this).viraCarta('4')"/>
 					<th>
 					<th>
-						<img id="img-5" src="img/verso.jpg" onclick="revelar('img-5')"/>
-					<th>
-				</tr>
-				<tr>
-					<th>
-						<img id="img-6" src="img/verso.jpg" onclick="revelar('img-6')"/>
-					<th>
-					<th>
-						<img id="img-7" src="img/verso.jpg" onclick="revelar('img-7')"/>
-					<th>
-					<th>
-						<img id="img-8" src="img/verso.jpg" onclick="revelar('img-8')"/>
-					<th>
-					<th>
-						<img id="img-9" src="img/verso.jpg" onclick="revelar('img-9')"/>
-					<th>
-					<th>
-						<img id="img-10" src="img/verso.jpg" onclick="revelar('img-10')"/>
+						<img id="img-5" src="img/verso.jpg" onclick="$(this).viraCarta('5')"/>
 					<th>
 				</tr>
 				<tr>
 					<th>
-						<img id="img-11" src="img/verso.jpg" onclick="revelar('img-11')"/>
+						<img id="img-6" src="img/verso.jpg" onclick="$(this).viraCarta('6')"/>
 					<th>
 					<th>
-						<img id="img-12" src="img/verso.jpg" onclick="revelar('img-12')"/>
+						<img id="img-7" src="img/verso.jpg" onclick="$(this).viraCarta('7')"/>
 					<th>
 					<th>
-						<img id="img-13" src="img/verso.jpg" onclick="revelar('img-13')"/>
+						<img id="img-8" src="img/verso.jpg" onclick="$(this).viraCarta('8')"/>
 					<th>
 					<th>
-						<img id="img-14" src="img/verso.jpg" onclick="revelar('img-14')"/>
+						<img id="img-9" src="img/verso.jpg" onclick="$(this).viraCarta('9')"/>
 					<th>
 					<th>
-						<img id="img-15" src="img/verso.jpg" onclick="revelar('img-15')"/>
+						<img id="img-10" src="img/verso.jpg" onclick="$(this).viraCarta('10')"/>
 					<th>
 				</tr>
 				<tr>
 					<th>
-						<img id="img-16" src="img/verso.jpg" onclick="revelar('img-16')"/>
+						<img id="img-11" src="img/verso.jpg" onclick="$(this).viraCarta('11')"/>
 					<th>
 					<th>
-						<img id="img-17" src="img/verso.jpg" onclick="revelar('img-17')"/>
+						<img id="img-12" src="img/verso.jpg" onclick="$(this).viraCarta('12')"/>
 					<th>
 					<th>
-						<img id="img-18" src="img/verso.jpg" onclick="revelar('img-18')"/>
+						<img id="img-13" src="img/verso.jpg" onclick="$(this).viraCarta('13')"/>
 					<th>
 					<th>
-						<img id="img-19" src="img/verso.jpg" onclick="revelar('img-19')"/>
+						<img id="img-14" src="img/verso.jpg" onclick="$(this).viraCarta('14')"/>
 					<th>
 					<th>
-						<img id="img-20" src="img/verso.jpg" onclick="revelar('img-20')"/>
+						<img id="img-15" src="img/verso.jpg" onclick="$(this).viraCarta('15')"/>
+					<th>
+				</tr>
+				<tr>
+					<th>
+						<img id="img-16" src="img/verso.jpg" onclick="$(this).viraCarta('16')"/>
+					<th>
+					<th>
+						<img id="img-17" src="img/verso.jpg" onclick="$(this).viraCarta('17')"/>
+					<th>
+					<th>
+						<img id="img-18" src="img/verso.jpg" onclick="$(this).viraCarta('18')"/>
+					<th>
+					<th>
+						<img id="img-19" src="img/verso.jpg" onclick="$(this).viraCarta('19')"/>
+					<th>
+					<th>
+						<img id="img-20" src="img/verso.jpg" onclick="$(this).viraCarta('20')"/>
 					<th>
 				</tr>				
 			</table>
