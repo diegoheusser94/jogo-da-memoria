@@ -88,9 +88,29 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
-					Jogadores				
+					<div class="page-header">
+						<h1>Jogo da Memória</h1>
+					</div>
+					<div class="row">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<span id="pts-player-1" class="badge">0</span>
+								<span id="name-user-1">Player 1</span>
+							</li>
+							<li class="list-group-item">
+								<span id="pts-player-1" class="badge">0</span>
+								<span id="name-user-1">Player 2</span>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="btn-group col-md-12" role="group" aria-label="...">
+						  <button type="button" class="btn btn-default col-md-6" id="btn-start" data-toggle="modal" data-target="#startModal">Iniciar</button>
+						  <button type="button" class="btn btn-default col-md-6" id="btn-cancel">Cancelar</button>
+						</div>
+					</div>				
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-2">
 							<img id="img-1" src="img/verso.jpg" onclick="$(this).viraCarta('1')"/>
@@ -161,6 +181,27 @@
 					</div>				
 				</div>			
 			</div>
-		</div>		
+		</div>
+		<div id="startModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title">Novo jogo</h4>
+			  </div>
+			  <div class="modal-body">
+				<input type="text" class="form-control" placeholder="Jogador 1" aria-describedby="sizing-addon1">
+				<input type="text" class="form-control" placeholder="Jogador 2" aria-describedby="sizing-addon1">
+			  </div>
+			  <div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Iniciar</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			  </div>
+			</div>
+
+		  </div>
+		</div>	
+		<script src='js/game.js'></script>		
 	</body>
 </html>
