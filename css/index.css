@@ -2,8 +2,7 @@ table {
 	margin: 0 auto 0;
 }
 
-th img {
-	width: 80px;
-	height: 150px;
+img {
+	width: 100%;
 	cursor: pointer;
 }
