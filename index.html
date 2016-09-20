@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
-		<script type="text/javascript" src="js/index.js"></script>
+
 		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 
 		<!-- Latest compiled and minified CSS -->
@@ -16,73 +16,6 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-			$(function(){
-				
-				//Variável para liberaçao e bloqueio de seleçao de carta
-				var libera = true;
-			
-				//Variável de controle de cartas viradas
-				var qtdCartas = 0;
-				
-				//Array com as cartas viradas
-				var arrCartas = new Array();
-				
-				//Açao para embaralhar o array das imagens e setalas nas cartas
-				setTimeout(function() {            
-					embaralhar();
-				}, 100);
-				
-				//Açao ao clicar na cartas
-				$.fn.viraCarta = function(id){
-					if(libera){
-						//Bloqueia seleçao de nova carta
-						libera = false;
-						//Incrementa quantidade de cartas viradas
-						qtdCartas++;
-						//Inserindo a carta selecionada no array
-						arrCartas.push(id);
-						
-						//Funcao para revelar a carta
-						revelar('img-'+id);					
-						
-						//Verifica se tem 2 ou mais cartas viradas
-						if(qtdCartas > 1){
-							
-							//Comparar as duas cartas, caso forem diferentes, desviram as cartas
-							if($("#img-"+arrCartas[0]).prop("src") != $("#img-"+arrCartas[1]).prop("src")){
-								setTimeout(function(){
-									//Desvirar as cartas depois de um segundo
-									for(i=0;i<arrCartas.length;i++){
-										desvirarCarta('img-'+arrCartas[i]);
-									}
-									//Limpando o array
-									arrCartas = [];
-									//Libera seleçao de carta
-									libera = true;
-								},1000);
-							}
-							//Caso as cartas sejam iguais, apenas limpa o array com as cartas selecionadas
-							else{
-								//Limpando o array
-								arrCartas = [];
-								//Libera seleçao de carta
-								libera = true;
-							}
-							
-							//Reset da quantidade de cartas
-							qtdCartas = 0;
-						}
-						else{
-							//Libera seleçao de carta
-							libera = true;
-						}
-					}
-					
-				};
-				
-			});
-		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -105,7 +38,7 @@
 					</div>
 					<div class="row">
 						<div class="btn-group col-md-12" role="group" aria-label="...">
-						  <button type="button" class="btn btn-default col-md-6" id="btn-start" data-toggle="modal" data-target="#startModal">Iniciar</button>
+						  <button type="button" class="btn btn-default col-md-6" data-toggle="modal" data-target="#startModal">Novo</button>
 						  <button type="button" class="btn btn-default col-md-6" id="btn-cancel">Cancelar</button>
 						</div>
 					</div>				
@@ -113,70 +46,70 @@
 				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-2">
-							<img id="img-1" src="img/verso.jpg" onclick="$(this).viraCarta('1')"/>
+							<img id="img-1" src="img/verso.jpg" onclick=""/>
 						</div>		
 						<div class="col-md-2">
-							<img id="img-2" src="img/verso.jpg" onclick="$(this).viraCarta('2')"/>
+							<img id="img-2" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-3" src="img/verso.jpg" onclick="$(this).viraCarta('3')"/>
+							<img id="img-3" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-4" src="img/verso.jpg" onclick="$(this).viraCarta('4')"/>
+							<img id="img-4" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-5" src="img/verso.jpg" onclick="$(this).viraCarta('5')"/>
+							<img id="img-5" src="img/verso.jpg" onclick=""/>
 						</div>			
 					</div>
 					<div class="row">
 						<div class="col-md-2">
-							<img id="img-6" src="img/verso.jpg" onclick="$(this).viraCarta('6')"/>
+							<img id="img-6" src="img/verso.jpg" onclick=""/>
 						</div>		
 						<div class="col-md-2">
-							<img id="img-7" src="img/verso.jpg" onclick="$(this).viraCarta('7')"/>
+							<img id="img-7" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-8" src="img/verso.jpg" onclick="$(this).viraCarta('8')"/>
+							<img id="img-8" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-9" src="img/verso.jpg" onclick="$(this).viraCarta('9')"/>
+							<img id="img-9" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-10" src="img/verso.jpg" onclick="$(this).viraCarta('10')"/>
+							<img id="img-10" src="img/verso.jpg" onclick=""/>
 						</div>			
 					</div>
 					<div class="row">
 						<div class="col-md-2">
-							<img id="img-11" src="img/verso.jpg" onclick="$(this).viraCarta('11')"/>
+							<img id="img-11" src="img/verso.jpg" onclick=""/>
 						</div>		
 						<div class="col-md-2">
-							<img id="img-12" src="img/verso.jpg" onclick="$(this).viraCarta('12')"/>
+							<img id="img-12" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-13" src="img/verso.jpg" onclick="$(this).viraCarta('13')"/>
+							<img id="img-13" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-14" src="img/verso.jpg" onclick="$(this).viraCarta('14')"/>
+							<img id="img-14" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-15" src="img/verso.jpg" onclick="$(this).viraCarta('15')"/>
+							<img id="img-15" src="img/verso.jpg" onclick=""/>
 						</div>			
 					</div>
 					<div class="row">
 						<div class="col-md-2">
-							<img id="img-16" src="img/verso.jpg" onclick="$(this).viraCarta('16')"/>
+							<img id="img-16" src="img/verso.jpg" onclick=""/>
 						</div>		
 						<div class="col-md-2">
-							<img id="img-17" src="img/verso.jpg" onclick="$(this).viraCarta('17')"/>
+							<img id="img-17" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-18" src="img/verso.jpg" onclick="$(this).viraCarta('18')"/>
+							<img id="img-18" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-19" src="img/verso.jpg" onclick="$(this).viraCarta('19')"/>
+							<img id="img-19" src="img/verso.jpg" onclick=""/>
 						</div>	
 						<div class="col-md-2">
-							<img id="img-20" src="img/verso.jpg" onclick="$(this).viraCarta('20')"/>
+							<img id="img-20" src="img/verso.jpg" onclick=""/>
 						</div>			
 					</div>				
 				</div>			
@@ -184,24 +117,27 @@
 		</div>
 		<div id="startModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
-
-			<!-- Modal content-->
 			<div class="modal-content">
 			  <div class="modal-header">
 				<h4 class="modal-title">Novo jogo</h4>
 			  </div>
 			  <div class="modal-body">
-				<input type="text" class="form-control" placeholder="Jogador 1" aria-describedby="sizing-addon1">
-				<input type="text" class="form-control" placeholder="Jogador 2" aria-describedby="sizing-addon1">
+				<div hidden id="alert-warning" class="alert alert-warning alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				  <span aria-hidden="true">&times;</span></button>
+				  <strong>Atenção!</strong> Preencha todos os campos abaixo.
+				</div>
+				<input id="edit-name-user-1" type="text" class="form-control" placeholder="Jogador 1" aria-describedby="sizing-addon1">
+				<hr>
+				<input id="edit-name-user-2" type="text" class="form-control" placeholder="Jogador 2" aria-describedby="sizing-addon1">
 			  </div>
 			  <div class="modal-footer">
-			  <button type="button" class="btn btn-default" data-dismiss="modal">Iniciar</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				  <button id="btn-start" type="button" class="btn btn-default">Iniciar</button>
+				  <button id="btn-close" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 			  </div>
 			</div>
-
 		  </div>
 		</div>	
-		<script src='js/game.js'></script>		
+		<script type="text/javascript" src="js/index.js"></script>
 	</body>
 </html>
