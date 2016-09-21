@@ -1,5 +1,5 @@
 //Variaveis
-var personagens = ["coyote.jpg",
+var cards = ["coyote.jpg",
 				   "dk.jpg",
 				   "jerry.png",
 				   "luigi.jpg",
@@ -24,7 +24,9 @@ var player1 = {name:"Jogador 1", points:0};
 var player2 = {name:"Jogador 2", points:0};
 var stop = true;
 var tho = sec = min = 0;
-var time = "";	
+var time = "";
+var player1IsPlaying = true;
+var lastId = "";	
 
 $(document).ready(function () {
 
@@ -38,6 +40,7 @@ $(document).ready(function () {
 			player2 = {name:name_user_2, points:0};
 			playersUpdate();
 			$('#startModal').modal('hide');
+			shuffle();
 			if(stop){
 				stop = false;
 				chronometer();		
@@ -56,34 +59,38 @@ $(document).ready(function () {
 	});
 
 	$('#btn-cancel').click(function (){
-		stop = true;
+		stop = true;	
+	});
+
+	$('img').click(function(){
+		if(!stop){
+			var id = $(this).attr('id');
+			cardShow(id);
+			if(lastId != ""){
+				cardHide(lastId);
+			}
+			lastId = id;
+		}
 	});
 });
 
 //Funções
-function embaralhar() {
+function shuffle() {
    var j, x, i;
-   for (i = personagens.length; i; i--) {
+   for (i = cards.length; i; i--) {
        j = Math.floor(Math.random() * i);
-       x = personagens[i - 1];
-       personagens[i - 1] = personagens[j];
-       personagens[j] = x;
+       x = cards[i - 1];
+       cards[i - 1] = cards[j];
+       cards[j] = x;
    }
 }
 
-function setImagens(){
-	var i, b;
-	for (i = 0; i < personagens.length; i++) {
-		document.getElementById("img-"+(i+1)).src = "img/"+personagens[i];
-	}
-}
-
-function revelar(id) {
+function cardShow(id) {
 	var i = Number(id.substring(4,id.length));
-	document.getElementById(id).src = "img/"+personagens[i-1];
+	document.getElementById(id).src = "img/"+cards[i-1];
 }
 
-function desvirarCarta(id){
+function cardHide(id){
 	document.getElementById(id).src = "img/verso.jpg";
 }
 
