@@ -67,8 +67,14 @@ $(document).ready(function () {
 	});
 
 	$('#btn-cancel').click(function (){
-		stop = true;	
+		cancel();	
 	});
+	
+	$('#btn-ok').click(function (){
+		cancel();
+		$('#finishModal').modal('hide');
+		playersUpdate();
+	});	
 
 	$('img').click(function(){
 		var id = position($(this).attr('id'));		
@@ -103,10 +109,10 @@ $(document).ready(function () {
  					}
  					//Caso as cartas sejam iguais, apenas limpa o array com as cartas selecionadas
  					else{
- 						//Limpando o array
- 						arrCartas = [];
- 						//Libera seleçao de carta
- 						libera = true;
+						//Limpando o array
+						arrCartas = [];
+						//Libera seleçao de carta
+						libera = true;
 						if(player1IsPlaying){
 							player1.points++;
 						} else {
@@ -124,6 +130,11 @@ $(document).ready(function () {
  				}
  			}					
 		}
+		if(player1.points + player2.points >= 10){
+			stop = true;
+			finish();
+			$('#finishModal').modal('show');
+		} 
 	});
 });
 
@@ -192,5 +203,54 @@ function changePlayerTime(){
 		$('#list-player-2').removeClass('active');
 		$('#list-player-1').addClass('active');
 		player1IsPlaying = true;		
+	}
+}
+
+function cancel(){
+	cards = [
+		"coyote.jpg",
+	   "dk.jpg",
+	   "jerry.png",
+	   "luigi.jpg",
+	   "mario.png",
+	   "sonic.jpg",
+	   "speedy_gonzalez.png",
+	   "star.jpg",
+	   "tom.png",
+	   "woody.jpg",
+	   "coyote.jpg",
+	   "dk.jpg",
+	   "jerry.png",
+	   "luigi.jpg",
+	   "mario.png",
+	   "sonic.jpg",
+	   "speedy_gonzalez.png",
+	   "star.jpg",
+	   "tom.png",
+	   "woody.jpg"
+	];
+	player1 = {name:"Jogador 1", points:0};
+	player2 = {name:"Jogador 2", points:0};
+	stop = true;
+	tho = sec = min = 0;
+	time = "";
+	player1IsPlaying = true;
+	libera = true;
+	qtdCartas = 0;
+	arrCartas = new Array();
+	var i = 1;
+	for(i;i<=cards.length;i++){
+		cardHide('img-'+i);
+	}
+}
+
+function finish(){
+	$('#finish-pts-player-1').html(player1.points);
+	$('#finish-pts-player-2').html(player2.points);
+	$('#finish-timer').html(time);
+	if(player1.points > player2.points){
+		$('#finish-name-player-1').html(player1.name+" (Vencedor!)");
+	} else {
+		$('#finish-name-player-2').html(player2.name+" (Vencedor!)");
 	}
 }
