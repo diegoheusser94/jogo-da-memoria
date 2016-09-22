@@ -25,8 +25,14 @@ var player2 = {name:"Jogador 2", points:0};
 var stop = true;
 var tho = sec = min = 0;
 var time = "";
-var player1IsPlaying = true;
-var lastId = "";	
+//Variável para liberaçao e bloqueio de seleçao de carta
+var libera = true;
+ 			
+//Variável de controle de cartas viradas
+var qtdCartas = 0;
+				
+//Array com as cartas viradas
+var arrCartas = new Array();	
 
 $(document).ready(function () {
 
@@ -41,6 +47,7 @@ $(document).ready(function () {
 			playersUpdate();
 			$('#startModal').modal('hide');
 			shuffle();
+			lastId = "";
 			if(stop){
 				stop = false;
 				chronometer();		
@@ -63,13 +70,51 @@ $(document).ready(function () {
 	});
 
 	$('img').click(function(){
+		var id = position($(this).attr('id'));		
 		if(!stop){
-			var id = $(this).attr('id');
-			cardShow(id);
-			if(lastId != ""){
-				cardHide(lastId);
-			}
-			lastId = id;
+			if(libera){
+ 				//Bloqueia seleçao de nova carta
+ 				libera = false;
+ 				//Incrementa quantidade de cartas viradas
+ 				qtdCartas++;
+ 				//Inserindo a carta selecionada no array
+ 				arrCartas.push(id);
+ 				
+ 				//Funcao para revelar a carta
+ 				cardShow('img-'+id);					
+ 						
+ 				//Verifica se tem 2 ou mais cartas viradas
+ 				if(qtdCartas > 1){
+ 							
+ 					//Comparar as duas cartas, caso forem diferentes, desviram as cartas
+ 					if($("#img-"+arrCartas[0]).prop("src") != $("#img-"+arrCartas[1]).prop("src")){
+ 						setTimeout(function(){
+ 							//Desvirar as cartas depois de um segundo
+ 							for(i=0;i<arrCartas.length;i++){
+ 								cardHide('img-'+arrCartas[i]);
+ 							}
+ 							//Limpando o array
+ 							arrCartas = [];
+ 							//Libera seleçao de carta
+ 							libera = true;
+ 						},1000);
+ 					}
+ 					//Caso as cartas sejam iguais, apenas limpa o array com as cartas selecionadas
+ 					else{
+ 						//Limpando o array
+ 						arrCartas = [];
+ 						//Libera seleçao de carta
+ 						libera = true;
+ 					}
+ 							
+ 					//Reset da quantidade de cartas
+ 					qtdCartas = 0;
+ 				}
+ 				else{
+ 					//Libera seleçao de carta
+ 					libera = true;
+ 				}
+ 			}					
 		}
 	});
 });
@@ -85,8 +130,13 @@ function shuffle() {
    }
 }
 
+function position(id){
+	return Number(id.substring(4,id.length));
+}
+
 function cardShow(id) {
-	var i = Number(id.substring(4,id.length));
+	console.log('show->'+id);
+	var i = position(id);
 	document.getElementById(id).src = "img/"+cards[i-1];
 }
 
