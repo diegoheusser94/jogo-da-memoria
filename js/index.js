@@ -25,6 +25,7 @@ var player2 = {name:"Jogador 2", points:0};
 var stop = true;
 var tho = sec = min = 0;
 var time = "";
+var player1IsPlaying = true;
 //Variável para liberaçao e bloqueio de seleçao de carta
 var libera = true;
  			
@@ -97,6 +98,7 @@ $(document).ready(function () {
  							arrCartas = [];
  							//Libera seleçao de carta
  							libera = true;
+							changePlayerTime();
  						},1000);
  					}
  					//Caso as cartas sejam iguais, apenas limpa o array com as cartas selecionadas
@@ -105,6 +107,12 @@ $(document).ready(function () {
  						arrCartas = [];
  						//Libera seleçao de carta
  						libera = true;
+						if(player1IsPlaying){
+							player1.points++;
+						} else {
+							player2.points++;
+						}
+						playersUpdate();
  					}
  							
  					//Reset da quantidade de cartas
@@ -173,4 +181,16 @@ function playersUpdate(){
 	$('#name-player-1').html(player1.name);
 	$('#pts-player-2').html(player2.points);
 	$('#name-player-2').html(player2.name);
+}
+
+function changePlayerTime(){
+	if(player1IsPlaying){
+		$('#list-player-1').removeClass('active');
+		$('#list-player-2').addClass('active');
+		player1IsPlaying = false;
+	} else {
+		$('#list-player-2').removeClass('active');
+		$('#list-player-1').addClass('active');
+		player1IsPlaying = true;		
+	}
 }
