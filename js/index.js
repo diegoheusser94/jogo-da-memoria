@@ -1,24 +1,5 @@
 //Variaveis
-var cards = ["coyote.jpg",
-				   "dk.jpg",
-				   "jerry.png",
-				   "luigi.jpg",
-				   "mario.png",
-				   "sonic.jpg",
-				   "speedy_gonzalez.png",
-				   "star.jpg",
-				   "tom.png",
-				   "woody.jpg",
-				   "coyote.jpg",
-				   "dk.jpg",
-				   "jerry.png",
-				   "luigi.jpg",
-				   "mario.png",
-				   "sonic.jpg",
-				   "speedy_gonzalez.png",
-				   "star.jpg",
-				   "tom.png",
-				   "woody.jpg"];
+var cards = ["coyote.jpg", "dk.jpg", "jerry.png", "luigi.jpg", "mario.png", "sonic.jpg", "speedy_gonzalez.png", "star.jpg", "tom.png", "woody.jpg", "coyote.jpg", "dk.jpg", "jerry.png", "luigi.jpg", "mario.png", "sonic.jpg", "speedy_gonzalez.png", "star.jpg", "tom.png", "woody.jpg"];
 
 var player1 = {name:"Jogador 1", points:0};
 var player2 = {name:"Jogador 2", points:0};
@@ -206,29 +187,8 @@ function changePlayerTime(){
 	}
 }
 
-function cancel(){
-	cards = [
-		"coyote.jpg",
-	   "dk.jpg",
-	   "jerry.png",
-	   "luigi.jpg",
-	   "mario.png",
-	   "sonic.jpg",
-	   "speedy_gonzalez.png",
-	   "star.jpg",
-	   "tom.png",
-	   "woody.jpg",
-	   "coyote.jpg",
-	   "dk.jpg",
-	   "jerry.png",
-	   "luigi.jpg",
-	   "mario.png",
-	   "sonic.jpg",
-	   "speedy_gonzalez.png",
-	   "star.jpg",
-	   "tom.png",
-	   "woody.jpg"
-	];
+function cancel(){ 
+	cards = ["coyote.jpg", "dk.jpg", "jerry.png", "luigi.jpg", "mario.png", "sonic.jpg", "speedy_gonzalez.png", "star.jpg", "tom.png", "woody.jpg", "coyote.jpg", "dk.jpg", "jerry.png", "luigi.jpg", "mario.png", "sonic.jpg", "speedy_gonzalez.png", "star.jpg", "tom.png", "woody.jpg"];
 	player1 = {name:"Jogador 1", points:0};
 	player2 = {name:"Jogador 2", points:0};
 	stop = true;
